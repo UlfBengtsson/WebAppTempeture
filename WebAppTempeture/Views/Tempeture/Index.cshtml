@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Tempeture Converter";
+}
+
+<h1>Tempeture Converter</h1>
+
+<hr />
+
+@if (ViewBag.Result != null)
+{
+    <h4>@ViewBag.Result</h4>
+    <hr />
+}
+
+<form method="post">
+    <label for="temp">Tempeture:</label>
+    <input id="temp" type="number" name="temp" step="0.1" required />
+
+    <label for="fromUnit">From:</label>
+    <select id="fromUnit" name="fromUnit">
+        @foreach (int tempUnit in Enum.GetValues(typeof(TempatureUnit)))
+        {
+            <option value="@tempUnit">@Enum.GetName(typeof(TempatureUnit), tempUnit)</option>
+        }
+    </select>
+
+    <label for="toUnit">To:</label>
+    <select id="toUnit" name="toUnit">
+        @foreach (int tempUnit in Enum.GetValues(typeof(TempatureUnit)))
+        {
+            <option value="@tempUnit">@Enum.GetName(typeof(TempatureUnit), tempUnit)</option>
+        }
+    </select>
+    <button>Convert</button>
+</form>
